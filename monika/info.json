@@ -1,18 +1,9 @@
-
 {
-
     "AUTHOR" : "Kavbweur",
-
     "INSTALL_MSG" : "Thanks for install.\nUse [p]monika to setup",
-
     "NAME" : "Monika",
-
     "SHORT" : "Monika",
-
     "DESCRIPTION" : "Monika things",
-
     "TAGS" : ["game character", "monika"],
-
     "REQUIREMENTS": ["none"]
-
 }

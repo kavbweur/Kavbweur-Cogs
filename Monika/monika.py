@@ -67,7 +67,7 @@ class Monika():
 
     @monologue.command(pass_context=True)
     async def stop(self, user: discord.Member = None):
-        """Остановить монолог Моники."""
+        """Остановить монолог Моники. Любой может остановить монолог."""
         self.stopMonika = True
         await self.bot.say("Но, ведь ты меня так хорошо слушал.")
 
