@@ -53,16 +53,11 @@ class Monika():
         await self.bot.say("Ура, ты готов меня послушать!")
         f = open(text_in_path, encoding='utf-8')
         username = ctx.message.author.name
-        while True:
+        for words in f:
             if self.stopMonika:
                 break
-            else:
-                for line in f:
-                    if self.stopMonika:
-                        break
-                    line
-                    await self.bot.say('**' + username + '**' + ', ' + line)
-                    await asyncio.sleep(10)
+            await self.bot.say('**' + username + '**' + ', ' + words)
+            await asyncio.sleep(10)
         await self.bot.say("Монолог закончен.")
 
     @monologue.command(pass_context=True)
