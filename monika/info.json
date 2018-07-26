@@ -5,5 +5,5 @@
     "SHORT" : "Monika",
     "DESCRIPTION" : "Monika things",
     "TAGS" : ["game character", "monika"],
-    "REQUIREMENTS": [""]
+    "REQUIREMENTS": ["random, aiohttp, choice, shuffle, send_cmd_help, settings"]
 }

@@ -50,7 +50,7 @@ class Monika():
             return await self.bot.say("Прости, но с другими ботами говорить не хочу.")
         self.stopMonika = False
         text_in_path = 'data/monika/' + random.choice(speech) + '.txt'
-        await self.bot.say("Ура, ты готов меня послушать!")
+        await self.bot.say("Ура, ты готов меня послушать!\n https://i.imgur.com/X12PfBp.jpg")
         f = open(text_in_path, encoding='utf-8')
         username = ctx.message.author.name
         for words in f:
@@ -58,7 +58,20 @@ class Monika():
                 break
             await self.bot.say('**' + username + '**' + ', ' + words)
             await asyncio.sleep(10)
-        await self.bot.say("Монолог закончен.")
+        await self.bot.say("Мой монолог закончен, надеюсь тебе было интересно.")
+
+
+
+    @commands.command(pass_context=True, name="delete")
+    async def delete_user(self, ctx, user: discord.Member):
+        """Удалить файл выбранного персонажа."""
+        author = ctx.message.author
+        if author == user:
+            await self.bot.say("Нельзя удалить себя.")
+        else:
+            await self.bot.say(user.name + ".chr удалён.")
+
+
 
     @monologue.command(pass_context=True)
     async def stop(self, user: discord.Member = None):
