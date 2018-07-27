@@ -1,9 +1,9 @@
 {
     "AUTHOR" : "Kavbweur",
-    "INSTALL_MSG" : "Thanks for install.\nUse [p]monika to setup",
+    "INSTALL_MSG" : "Thanks for install.\nprint [p]help Monika know the commands.",
     "NAME" : "Monika",
     "SHORT" : "Monika",
     "DESCRIPTION" : "Monika things",
     "TAGS" : ["game character", "monika"],
-    "REQUIREMENTS": ["random, aiohttp, choice, shuffle, send_cmd_help, settings"]
+    "REQUIREMENTS": ["os, aiohttp, random"]
 }
