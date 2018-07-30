@@ -1,0 +1,9 @@
+{
+    "AUTHOR" : "Redjumpman, Kavbweur",
+    "INSTALL_MSG" : "Thanks for install.\nUse [p]setborsh to setup",
+    "NAME" : "Borsh",
+    "SHORT" : "Borsh",
+    "DESCRIPTION" : "Monika love borsh, love borsh with Monika in Russia.",
+    "TAGS" : ["borsh"],
+    "REQUIREMENTS": [""]
+}
