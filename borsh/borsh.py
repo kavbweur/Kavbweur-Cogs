@@ -114,7 +114,7 @@ class Borsh:
 
         await self.bot.say(msg)
 
-    @commands.command(pass_context=True, no_pm=True)
+    @commands.command(pass_context=True, no_pm=True, aliases="borsch")
     async def borsh(self, ctx):
         """Получить случайное количество тарелок с борщем. 12h ограничение по времени."""
         author = ctx.message.author
@@ -224,24 +224,24 @@ class Borsh:
                    "<:borschtsch:255796379186757642> в холодильнике!")
         else:
             if success_chance <= 90:
-                borsh_fridge = settings["Players"][user.id]["Borshs"]
-                borsh_stolen = int(borsh_fridge * 0.75)
+                borshs_fridge = settings["Players"][user.id]["Borshs"]
+                borshs_stolen = int(borshs_fridge * 0.75)
 
-                if borsh_stolen == 0:
-                    borsh_stolen = 1
+                if borshs_stolen == 0:
+                    borshs_stolen = 1
 
-                stolen = random.randint(1, borsh_stolen)
+                stolen = random.randint(1, borshs_stolen)
                 settings["Players"][user.id]["Borshs"] -= stolen
                 settings["Players"][author.id]["Borshs"] += stolen
                 dataIO.save_json(self.file_path, self.system)
-                if 1 == borshs:
+                if 1 == stolen:
                     plate = "тарелку"
-                if 1 < borshs < 5:
+                if 1 < stolen < 5:
                     plate = "тарелки"
-                if 4 < borshs:
+                if 4 < stolen:
                     plate = "тарелок"
-                if 20 < borshs:
-                    remainder = borshs % 10
+                if 20 < stolen:
+                    remainder = stolen % 10
                     if 1 == remainder:
                         plate = "тарелку"
                     if 1 < remainder < 5:
