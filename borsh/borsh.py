@@ -114,7 +114,7 @@ class Borsh:
 
         await self.bot.say(msg)
 
-    @commands.command(pass_context=True, no_pm=True, aliases="borsch")
+    @commands.command(pass_context=True, no_pm=True, aliases=["borsch"])
     async def borsh(self, ctx):
         """Получить случайное количество тарелок с борщем. 12h ограничение по времени."""
         author = ctx.message.author
@@ -275,9 +275,9 @@ class Borsh:
 
     def account_check(self, settings, userobj):
         if userobj.id not in settings["Players"]:
-            settings["Players"][userobj.id] = {"Borshs": 0,
-                                               "Steal CD": 0,
-                                               "borsh CD": 0}
+            settings["Players"][userobj.id] = {"Borsh CD" : 0,
+                                               "Borshs" : 0,
+                                               "Steal CD": 0}
             dataIO.save_json(self.file_path, self.system)
 
     def time_formatting(self, seconds):
