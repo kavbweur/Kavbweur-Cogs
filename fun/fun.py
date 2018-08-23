@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from discord.ext import commands
 from cogs.utils import checks
 from random import randint
@@ -12,33 +13,61 @@ class Fun:
 
     def __init__(self, bot):
         self.bot = bot
+    
+    async def _answer_user(self, ctx, msg: str):
+        await self.bot.say(msg)
+        msg = await self.bot.wait_for_message(author=ctx.message.author, channel=ctx.message.channel)
+        if msg:
+            if msg.content == 'Да':
+                msg = 'Yes'
+            elif msg.content == 'Нет':
+                msg = 'No'
+        return msg
 
     @commands.command(pass_context=True)
     async def sword(self, ctx, *, user: discord.Member):
         """Битва за Святой Грааль!"""
-        servant_class = "Saber", "Lancer", "Archer", "Rider", "Caster", "Assassin", "Berserker"
+        servant_class = ["Saber", "Lancer", "Archer", "Rider", "Caster", "Assassin", "Berserker"]
+        print(servant_class)
         author = ctx.message.author
         servant = choice(servant_class)
         enemy_servant = choice(servant_class)
-        while servant == enemy_servant:
+        if servant == enemy_servant:
             enemy_servant = choice(servant_class)
-        await self.bot.say("**Вы участвуете в войне за Святой Грааль.**")
-        await self.bot.say("*идёт призыв случайного слуги*")
-        await self.bot.say("Вы призвали слугу класса: **{}**".format(servant))
-        if user.id == self.bot.user.id:
-            await self.bot.say("Вы вызвали Монику на дуэль.\n*Моника меняет реальность*\nВаш слуга погибает, вы не можете продолжать свой участие в войне за святой грааль.\nhttps://i.imgur.com/wlabDWZ.png")
-            return
-        if user.id == author.id:
-            await self.bot.say("Вы приказали вашему слуге атаковать себя командным заклинанием.\n*слуга умирает, проклиная вас*\nВы не можете больше продолжить своё участие в войне за Святой Грааль.\nhttps://i.imgur.com/wlabDWZ.png")
-            return
-        await self.bot.say("Вы встретили врага, класс его слуги: **{}**".format(enemy_servant))
-        await self.bot.say("**НАЧИНАЕТСЯ БИТВА МЕЖДУ СЛУГАМИ**\nhttps://i.imgur.com/u76vtsP.gifv")
         winner = choice([author.name, user.name])
         loser = choice([author.name, user.name])
-        while winner == loser:
+        if winner == loser:
             loser = choice([author.name, user.name])
-        await self.bot.say("Побеждает: **{}** со своим слугой. Он(а) стал(а) на шаг ближе к победе.\nА **{}** отправляется в додзё тигры.\nhttps://i.imgur.com/wlabDWZ.png".format(winner, loser))
-        
+        await self.bot.say("**Вы участвуете в войне за Святой Грааль.**")
+        await self.bot.say("*идёт призыв случайного слуги*")
+        await asyncio.sleep(2)
+        await self.bot.say("Вы призвали слугу класса: **{}**".format(servant))
+        answer = await self._answer_user(ctx, "Хотите продолжить? Ответьте Да или Нет.")
+        if answer == 'Yes':
+            await self.bot.say("Вы храбрый маг, поэтому можете продолжать войну за Святой Грааль.")
+        elif answer == 'No':
+            await self.bot.say('Вас находит **{}** и спокойно убивает.\nhttps://i.imgur.com/HfhVSZO.gifv'.format(enemy_servant))
+            return
+        else:
+            await self.bot.say("Вы не можете читать.")
+            return
+        if user.id == self.bot.user.id:
+            await asyncio.sleep(5)
+            await self.bot.say("Вы вызвали Монику на битву.\n**МОНИКА ИСПОЛЬЗУЕТ НЕБЕСНЫЙ ФАНТАЗМ**\nВы и Ваш слуга погибаете, вы не можете продолжать свой участие в войне за святой грааль.\nhttps://i.imgur.com/HfhVSZO.gifv")
+            return
+        if user.id == author.id:
+            await asyncio.sleep(5)
+            await self.bot.say("Вы приказали вашему слуге атаковать себя командным заклинанием.\n***слуга умирает, проклиная вас***\nВы не можете больше продолжить своё участие в войне за Святой Грааль.\nhttps://i.imgur.com/g9hZaZ4.gifv")
+            return
+        await asyncio.sleep(5)
+        await self.bot.say("Вы встретили врага, класс его слуги: **{}**".format(enemy_servant))
+        await asyncio.sleep(2)
+        await self.bot.say("**НАЧИНАЕТСЯ БИТВА МЕЖДУ СЛУГАМИ**\nhttps://i.imgur.com/u76vtsP.gifv")
+        await asyncio.sleep(5)
+        if winner == author.name:
+            await self.bot.say("Побеждает: **{}** со своим слугой **{}**.".format(winner, servant))
+        else:
+            await self.bot.say("Побеждает: **{}** со своим слугой **{}**.".format(winner, enemy_servant))
 
 
     @commands.command(pass_context=True)
