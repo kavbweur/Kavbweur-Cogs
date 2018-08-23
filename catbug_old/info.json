@@ -5,5 +5,5 @@
     "SHORT" : "Catbug_old",
     "DESCRIPTION" : "Old service module for monika",
     "TAGS" : ["catbug"],
-    "REQUIREMENTS": ["none"]
+    "REQUIREMENTS": []
 }
