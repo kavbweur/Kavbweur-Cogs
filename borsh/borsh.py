@@ -149,6 +149,7 @@ class Borsh:
         """Посмотреть как много тарелок с борщем в твоём холодильнике."""
         author = ctx.message.author
         server = ctx.message.server
+        plate = "тарелок"
         settings = self.check_server_settings(server)
         self.account_check(settings, author)
         borshs = settings["Players"][author.id]["Borshs"]
@@ -166,8 +167,7 @@ class Borsh:
                 plate = "тарелки"
             if 4 < remainder:
                 plate = "тарелок"
-        await self.bot.whisper("Моника ищет в твоём холодильнике <:refrigerator:470613165563052054> тарелки с борщем и находит там **{}** {}. "
-                               "<:CatBug:259254144328663040><:borschtsch:255796379186757642><:CatBug:259254144328663040>".format(borshs, plate))
+        await self.bot.whisper("Моника ищет в твоём холодильнике <:refrigerator:470613165563052054> тарелки с борщем и находит там **{}** {}. <:CatBug:259254144328663040><:borschtsch:255796379186757642><:CatBug:259254144328663040>".format(borshs, plate))
 
     @commands.command(pass_context=True, no_pm=True)
     async def steal(self, ctx, user: discord.Member=None):
