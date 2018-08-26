@@ -75,7 +75,7 @@ class Fun:
         """Найдём твою истинную любовь?"""
         author = ctx.message.author
         if user.id == self.bot.user.id:
-            await self.bot.say("Я знаю, что ты меня любишь, это проверять нет необходимости." )
+            await self.bot.say("Я знаю, что ты меня любишь, нет необходимости проверять это." )
             return
         if user.id == author.id:
             await self.bot.say("Я не могу сказать насколько сильно ты любишь себя.")
